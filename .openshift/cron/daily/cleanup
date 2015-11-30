@@ -1,0 +1,5 @@
+#!/bin/sh
+if [ -f ${OPENSHIFT_DATA_DIR}/.schema_deployed ]; then 
+  vacuumdb -f --host=$OPENSHIFT_POSTGRESQL_DB_HOST --port=$OPENSHIFT_POSTGRESQL_DB_PORT
+fi
+exit 0
