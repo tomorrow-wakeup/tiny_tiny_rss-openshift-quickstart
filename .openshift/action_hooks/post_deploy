@@ -4,6 +4,8 @@
 # it could be python, php, ruby, etc.
 
 if [ -f $OPENSHIFT_DATA_DIR/.schema_deployed ]; then exit 0; fi
-git clone https://github.com/tomorrow-wakeup/ttrss-mirror.git $OPENSHIFT_REPO_DIR/php && psql -h$OPENSHIFT_POSTGRESQL_DB_HOST -U$OPENSHIFT_POSTGRESQL_DB_USERNAME $WOPENSHIFT_POSTGRESQL_DB_PASSWORD -f$OPENSHIFT_REPO_DIR/php/schema/ttrss_schema_pgsql.sql $OPENSHIFT_APP_NAME && touch $OPENSHIFT_DATA_DIR/.schema_deployed
+git clone https://github.com/tomorrow-wakeup/ttrss-mirror.git $OPENSHIFT_REPO_DIR/php
 git clone https://github.com/tomorrow-wakeup/ttrss-config-openshift.git $OPENSHIFT_REPO_DIR/ttrss-config-openshift
 cp -f $OPENSHIFT_REPO_DIR/ttrss-config-openshift/config.php $OPENSHIFT_REPO_DIR/php/config.php
+psql -h$OPENSHIFT_POSTGRESQL_DB_HOST -U$OPENSHIFT_POSTGRESQL_DB_USERNAME $WOPENSHIFT_POSTGRESQL_DB_PASSWORD -f$OPENSHIFT_REPO_DIR/php/schema/ttrss_schema_pgsql.sql $OPENSHIFT_APP_NAME
+touch $OPENSHIFT_DATA_DIR/.schema_deployed
